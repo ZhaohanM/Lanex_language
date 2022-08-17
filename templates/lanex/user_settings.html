@@ -1,0 +1,48 @@
+{% extends 'lanex/base.html' %}
+{% load static %}
+
+{% block title_block %}
+Settings
+{% endblock %}
+
+{% block body_block %}
+{% if user %}
+
+
+<div class="d-flex justify-content-center">
+    <div class="card" style="width: 35rem;">
+        <h5 class="card-header mb-2">Profile settings for {{ user.username }}</h5>
+        <div class="card-body">
+
+            <form id="update_user_form" method="POST" action="{% url 'lanex:user_settings' user.username %}"
+                enctype="multipart/form-data" class="px-5">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label>Email</label>
+                    {{ update_user_form.email }}
+                </div>
+                <div class="form-group row">
+                    <label>First Name</label>
+                    {{ update_user_form.first_name }}
+                </div>
+                <div class="form-group row">
+                    <label>Last name</label>
+                    {{ update_user_form.last_name }}
+                </div>
+                {{ update_profile_form }}
+
+        </div>
+        <div class="card-footer">
+            <input type="submit" class="btn btn-success" name="submit" value="Save" />
+            <a style="float:right;" class="btn btn-danger" href="{% url 'lanex:user_delete' user.username %}"> Delete
+                Account </a>
+
+        </div>
+        </form>
+    </div>
+</div>
+
+{% else %}
+<h1>Invalid URL result</h1>
+{% endif %}
+{% endblock %}

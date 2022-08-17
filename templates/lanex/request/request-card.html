@@ -1,0 +1,139 @@
+{% load static %}
+<!-- Flexible component for displaying request and comment, takes number of arguments -->
+
+
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+/>
+
+<div class="container-fluid">
+    <div class="col-sm-12 mb-4">
+        <div class="panel panel-white post panel-shadow">
+            <div class="post-heading">
+                <div class="pull-left image">
+                    {% if r.creator.picture %}
+                    <img
+                        src="{{ r.creator.picture }}"
+                        class="rounded-circle avatar"
+                        alt="user profile image"
+                    />
+                    {% else %}
+                    <img
+                        src="{% static 'images/avatar.png' %}"
+                        class="rounded-circle avatar"
+                        alt="user profile image"
+                    />
+                    {% endif %}
+                </div>
+
+                <div class="pull-left meta">
+                    <div class="title h5">
+                        {% if full %}
+                            <b>{{ r.title }}</b>
+                        {% else %}
+                            <a href="{% url 'lanex:show_request' r.language.slug r.slug %}">
+                                <b>{{ r.title }}</b>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <a href="{% url 'lanex:show_user' r.creator %}"><h6 class="text-muted time pull-left">{{r.creator}}</h6></a>
+                    
+                </div>
+                
+                <div class="pull-right meta">
+                    <div class="title h5">
+                        <p>{{ r.language }}</p>
+                        {% if r.picture and full == False%}
+                        <img src="{{ r.picture.url }}" class="rounded mr-4 request-small-picture" alt="request image" />
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="post-description text-left">
+                <p>{{ r.description }}</p>
+
+                {% if full and r.picture %}
+                <div class="">
+                    <img src="{{ r.picture.url }}" class="mr-4 request-large-picture" alt="request image" />
+                </div>
+                {% endif %}
+                <div class="stats">
+                    <div class="btn btn-default stat-item">
+                        <i class="fa fa-eye icon"></i>{{r.views}}
+                    </div>
+                    <div class="btn btn-default stat-item">
+                        <i class="fa fa-calendar icon"></i>{{r.suggested_date}}
+                    </div>
+                    {% if comments %}
+                        <div class="btn btn-default stat-item">
+                            <i class="fa fa-comment icon"></i>{{ comments.count }}
+                        </div>
+                    {% endif %}
+
+                    {% if r.location %}
+                    <a
+                        href="https://maps.google.com?q={{ r.location }}"
+                        class="btn btn-default stat-item"
+                    >
+                        <i class="fa fa-map-marker icon"></i>Google Maps
+                    </a>
+                    {% if full %}
+                        {% if r.completed == False %}
+                        {% if r.creator != user %}
+                            <a style="float:right" class="btn btn-success" href = "{% url 'lanex:accept_request' request.language.slug request.slug %}"> Accept Request </a>
+                        {% else %}
+                            <a style="float:right" class="btn btn-danger" href = "{% url 'lanex:delete_request' request.language.slug request.slug %}"> Delete Request  </a>
+                        {% endif %}
+                    {% endif %}  
+                    {% endif %}
+                {% endif %}
+                </div>
+            </div>
+
+            {% if full %}
+            <div class="post-footer">
+                <ul class="comments-list">
+                    {% for comment in comments %}
+                    <li class="comment">
+                        <a class="pull-left" href="#">
+                            {% if comment.creator.picture %}
+                            <img
+                                src="{{ r.creator.picture }}"
+                                class="rounded-circle avatar"
+                                alt="user profile image"
+                            />
+                            {% else %}
+                            <img
+                                src="{% static 'images/avatar.png' %}"
+                                class="rounded-circle avatar"
+                                alt="user profile image"
+                            />
+                            {% endif %}
+                        </a>
+                        <div class="comment-body">
+                            <div class="comment-heading">
+                                <h4 class="user"><a href = "{% url 'lanex:show_user' comment.creator.username %}">{{ comment.creator.username }}</a></h4>
+                                <h5 class="time">{{ comment.created_on }}</h5>
+                            </div>
+                            <p>{{ comment.body | linebreaks }}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+
+                    {% if user.id != None%}
+                    <form method="post">
+                        {{ comment_form.body }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary mt-3">Comment</button>
+                    </form>
+                    {% endif %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

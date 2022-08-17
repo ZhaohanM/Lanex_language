@@ -1,0 +1,36 @@
+{% extends 'lanex/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    Add A Language
+{% endblock %}
+{% block body_block %}
+<h1>Add a language</h1>
+    <div class="jumbotron p-2 jumbo-bg">
+        <div class="container">
+            <h1 class="jumbotron-heading">Add a Language</h1>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+        <form role="form" id="language_form" method="post" action="{% url 'lanex:add_language' %}">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}<br />
+            {{ field }}<br />
+            <div class="p-2"></div>
+        {% endfor %}
+            <br />
+            <button class="btn btn-primary"style="display: inline-block;border-radius: 4px;background-color: #1ea6f4;border: none;color: #FFFFFF;text-align: center;font-size: 28px;padding: 20px;width: 200px;transition: all 0.5s;cursor: pointer;margin: 5px;" type="submit" name="submit">
+            Create Language
+            </button>
+            <div class="p-5"></div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

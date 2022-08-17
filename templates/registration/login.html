@@ -1,0 +1,34 @@
+{% extends 'lanex/base.html' %} {% load static %} {% block title_block %} Login {% endblock %} {% block body_block %}
+<div class="sidenav">
+    <div class="login-main-text">
+        <h2 class="login-heading">Lanex</h2>
+        <p class="login-desc">Your success in learning languages continues here.</p>
+    </div>
+</div>
+
+<div class="main">
+    <div class="col-md-6 col-sm-12 mx-auto">
+        <img class="login-logo" src="/static/images/logo.png" />
+
+        <div class="login-form">
+            <form class="form-signin" role="form" method="post" action=".">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label>Username</label>
+                    {{ form.username }}
+                </div>
+
+                <div class="form-group row">
+                    <label>Password</label>
+                    {{ form.password }}
+                </div>
+
+                <button type="submit" class="btn btn-black">Login</button>
+                <a href="/accounts/register" class="btn btn-secondary">Register</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

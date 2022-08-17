@@ -1,0 +1,39 @@
+{% extends 'lanex/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    Search
+{% endblock %}
+{% block body_block %}
+{% comment %} UNUSED!!! {% endcomment %}
+
+<div class="container text-center">
+ <div class="jumbotron p-3 jumbo-bg">
+    <div class="container">
+    <h1 class="jumbotron-heading">Search Lanex</h1>
+    <p>Find relevant language requests</p>
+    </div>
+</div> 
+
+
+
+
+{% include "lanex/search/search_input.html" %}
+
+<br>
+<div>
+    {% if requests %}
+            {% for request in requests %}
+                {% include "lanex/request/request-card.html" with r=request %}
+            {% endfor %}
+    {% else %}
+        {% if query %}
+        <h3>We're sorry, we couldn't find any search results for: {{ query }}</h3>
+        {% endif %}
+    {% endif %}
+</div>
+</div>
+
+{% include "lanex/base/footer.html" %}
+
+{% endblock %}

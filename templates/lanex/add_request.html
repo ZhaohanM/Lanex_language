@@ -1,0 +1,78 @@
+{% extends 'lanex/base.html' %}
+{% load static %}
+
+{% block title_block %}
+Add A Request
+{% endblock %}
+{% block head_block %}
+<script src="{% static 'jQuery/jQuery.js' %}"></script>
+{{ form.media }}
+{% endblock %}
+{% block body_block %}
+<div class="container text-center">
+    <div class="container">
+        <h3>Add a {{language}} language request</h3>
+    </div>
+
+    <div class="container col-md-8 mt-5">
+
+        {% if language %}
+        <form id="add_request_form" method="POST" action="{% url 'lanex:add_language_request' language.slug %}"
+            enctype="multipart/form-data">
+            {% else %}
+            <form id="add_request_form" method="POST" action="{% url 'lanex:add_request' %}"
+                enctype="multipart/form-data">
+                {% endif %}
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label>Title</label>
+                    {{ form.title }}
+                </div>
+                {% if language %}
+                {% else %}
+                <div class="form-group row">
+                    <label>Language</label>
+                    {{ form.language }}
+                </div>
+                {% endif %}
+                <div class="form-group row">
+                    <label>Description</label>
+                    {{ form.description}}
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label> Date</label>
+                    </div>
+                    <div class="row">
+                        {{ form.suggested_date }}
+                    </div>
+                </div>
+
+                <div class="form-group row mb-0">
+                    <label>City</label>
+                    {{ form.city }}
+                </div>
+                {{ form.location }}
+
+                <div class="form-group row mt-4">
+                    <label class="mr-2">Picture</label>
+                    <div class="">
+                        {{ form.picture }}
+                    </div>
+                </div>
+                {{form.views}}
+                <div class="form-group row mt-4">
+                    <button type="submit" class="btn btn-success">Create a request</button>
+                </div>
+            </form>
+    </div>
+</div>
+
+<script>
+
+
+</script>
+
+{% include "lanex/base/footer.html" %}
+
+{% endblock %}

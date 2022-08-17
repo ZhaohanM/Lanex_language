@@ -1,0 +1,20 @@
+{% include "lanex/index/carousel.html" %}
+<!-- Landing page -->
+
+<div class="container mt-4 d-flex flex-column align-items-center p-3">
+    <div class="row justify-content-center">
+        <img class="" src="/static/images/logo.png" />
+    </div>
+    <h4 class="pt-4">Welcome to Lanex! </h4>
+    <p class="lead w-75 text-center pt-0">
+        Feel free to browse below to look at some of the most popular language requests or if you have
+        a more specific language in mind, check out the explore section or try typing into the search bar provided
+        below.
+    </p>
+    <p class="lead w-75 text-center pb-4">
+        For more information about Lanex, check out the about section and if you are interested in creating your
+        own language request, head over to the login section and register: <a href="/accounts/login">join the fun!</a>
+    </p>
+
+    {% include "lanex/request/requests.html" %}
+</div>

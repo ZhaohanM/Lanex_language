@@ -1,0 +1,65 @@
+<nav class="col-md-2 d-none d-md-block sidebar pt-0">
+    <div class="wrapper">
+
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column ">
+                <hr>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lanex:index' %}">
+                            <span data-feather="home"></span>
+                            Homepage <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lanex:explore' %}">
+                            <span data-feather="activity"></span>
+                            Explore
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lanex:about' %}">
+                            <span data-feather="activity"></span>
+                            About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lanex:add_request' %}">
+                            <span data-feather="plus"></span>
+                            Add a Request
+                        </a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lanex:show_user' user.username %}">
+                            <span data-feather="eye"></span>
+                            {{ user.username }}
+                        </a>
+                    </li>
+ 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth_password_change' %}">
+                            <span data-feather="lock"></span>
+                            Change Password
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth_logout' %}?next={% url 'lanex:index' %}">
+                            <span data-feather="log-out"></span>
+                            Logout
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth_login' %}">
+                            <span data-feather="log-in"></span>
+                            Login
+
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,21 @@
+<ul class="nav flex-column">
+    {% if languages %}
+        {% for l in languages %}
+            {% if l == current_language %}
+                <li class="nav-item">
+                <a class="nav-link active" href = "{% url 'lanex:show_language' l.slug %}">
+                    <span data-feather="archive"></span>{{ l.name }}
+                </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                <a class="nav-link" href = "{% url 'lanex:show_language' l.slug %}">
+                    <span data-feather="archive"></span>{{ l.name }}
+                </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <li class="nav-item">There are no languages present.</li>
+    {% endif %}
+</ul>

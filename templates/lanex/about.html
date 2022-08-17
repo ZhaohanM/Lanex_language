@@ -1,0 +1,77 @@
+{% extends 'lanex/base.html' %}
+{% load static %}
+
+{% block title_block %}
+About
+{% endblock %}
+{% block body_block %}
+<div class="container text-left">
+    <section id="about">
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <img src="/static/images/logo.png" />
+            </div>
+
+
+            <h3 class="text-center pt-4">Welcome: This is Lanex</h3>
+            <hr />
+
+            <div class="text-center">
+                <h5 class="font-weight-bold">Bienvenue</h5>
+                <p>Our goal is to to help make it easier for users to exchange languages with each other.</p>
+                <h5 class="font-weight-bold">Bienvenido</h5>
+                <p>Have a request to make regarding a language? Our mission is to help you.</p>
+                <h5 class="font-weight-bold">こんにちは</h5>
+                <p>Though we have main four language categories - French, Spanish, English and Japanese, don't be afraid
+                    to create a request for any language that interests you.</p>
+                <hr>
+                <p class="text-center">After all, we are here to make bring language learners together and to make
+                    finding language buddies that bit more simple.<br>
+                    Want to read more? Read on. Ready to explore? Head over to the requests page to find out what
+                    requests exist.</p>
+            </div>
+            <img src="../../static/images/people.jpg" class="mr-4 mb-5 request-large-picture" alt="request image" />
+            <h4>What is Lanex?</h4>
+            <hr>
+
+            <p>
+                Lanex is a web application that enables users to communicate with each other to exchange languages,
+                thereby helping to improve language knowledge and allowing users to create new language partners along
+                the way.
+                The web application focuses on uniting people so that they can find language partners to participate and
+                communicate with others.
+            </p>
+
+            <h4>What can I do in Lanex? </h4>
+            <hr />
+
+            <p>
+                Firstly, the user can set the language request based on the language of interest and preferred location.
+                In the request, the user can set the time and place to meet with other interested users, with a map functionality provided.
+                For online activities in Lanex, they can set the location as their residence and post it in the
+                description or title so that they can find language partners who want to chat online on different
+                platforms.
+                Then, the demand can be anything related to language learning: request to meet, have an online chat,
+                join a study group, get recommendations, find a teacher, etc.
+            </p>
+
+            <h4>How to find and accept a request? </h4>
+            <hr />
+
+            <p>
+                Users can accept language requests created by other users to participate in language-related activities
+                and meetings. And Lanex grants users the ability to comment on language requests in order to better meet
+                the needs of users. If there is an other user's request which interests you, you can accept it by clicking on the respective button. Once redirected to the owner of the request's profile page, click on the Send email button. This should open up your default email client where you can mention about your interest for their created request.
+                (Remember: a search function is also provided to make it easier to find language requests that better
+                match preferences.)
+            </p>
+
+
+        </div>
+    </section>
+</div>
+
+{% include "lanex/base/footer.html" %}
+
+{% endblock %}

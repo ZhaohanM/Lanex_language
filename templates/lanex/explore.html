@@ -1,0 +1,15 @@
+{% extends 'lanex/base.html' %}
+{% load static %}
+
+{% block title_block %}
+Explore
+{% endblock %}
+{% block body_block %}
+
+<div class="text-center mt-5">
+    {% include "lanex/languages_view.html" %}
+    {% include "lanex/request/requests.html" %} 
+</div>
+
+{% include "lanex/base/footer.html" %}
+{% endblock %}

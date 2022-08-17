@@ -1,0 +1,10 @@
+
+<div class="request-container d-flex flex-column align-items-start">
+    {% include "lanex/search/search_input.html" %}
+    {% if requests %} {% for r in requests %}
+        {% include "lanex/request/request-card.html" with request=r full=False %}
+    {% endfor %} 
+    {% else %}
+    <p class="ml-5 mt-2" >There are no requests present.</p>
+    {% endif %}
+</div>

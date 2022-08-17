@@ -1,0 +1,33 @@
+<!-- Cards showing languages component -->
+<section id="languages" class="my-5">
+    <div class="row">
+        <div class="col-md-1"></div>
+        {% if languages %}
+            {% for l in languages %}
+                <div class="col-md-2">
+                    <a href = "{% url 'lanex:show_language' l.slug %}">
+                        {% if l == active %}
+                        <div class="card border-primary">
+                        {% else %}
+                        <div class="card">
+                        {% endif %}
+                            <img class="card-image language-card-image" src="{{ l.picture.url }}" />
+                            <div class="card-body">
+                                {% if l == active %}
+                                <h5 class="card-title test text-danger">{{ l.name }}</h5> 
+                                {% else %}
+                                <h5 class="card-title test">{{ l.name }}</h5> 
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        <div class="col-md-1"></div>
+        
+        {% else %}
+            <li class="nav-item">No languages present it seems </li>
+        {% endif %}
+    </div>
+</section>

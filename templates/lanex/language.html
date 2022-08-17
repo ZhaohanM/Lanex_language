@@ -1,0 +1,22 @@
+{% extends 'lanex/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    {% if language %}
+        {{ language.name }}
+    {% else %}
+        The language is unknown
+    {% endif %}
+{% endblock %}
+
+{% block body_block %}
+
+{% include "lanex/languages_view.html" with active=language%}
+<p class="text-muted text-center">
+    On this page can be found language requests associated with the {{language}} language 
+</p>
+
+
+{% include "lanex/request/requests.html" %} 
+
+{% endblock %}

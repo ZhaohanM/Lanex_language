@@ -1,0 +1,25 @@
+{% extends 'lanex/base.html' %}
+{% load static %}
+
+{% block title_block %}
+{% if user.is_authenticated %}
+    Homepage
+{% else %}
+    Home
+{% endif %}
+{% endblock %}
+
+{% block body_block %}
+{% if user.is_authenticated %}
+
+  <h2 class="text-center mb-5">Hot requests</h2>
+  {% include "lanex/request/requests.html" %} 
+
+{% else %}
+  {% include "lanex/index/landing.html" %} 
+{% endif %}
+
+{% include "lanex/base/footer.html" %}
+
+
+{% endblock %}
